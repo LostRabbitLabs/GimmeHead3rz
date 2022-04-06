@@ -54,5 +54,3 @@ X-Pingback
 X-Powered-By
 X-Robots-Tag
 X-UA-Compatible
-
-
