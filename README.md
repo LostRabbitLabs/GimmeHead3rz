@@ -16,6 +16,7 @@ GimmeHead3rz is an up-to-date customizable HTTP/HTTPS header analyzer that evalu
 - Supports customizable headers (both name and value) to the request(s)
 - Supports a customizable Host header
 - Supports a customizable User-Agent header
+- Supports displaying content received from the request(s)
 - Supports customizable body content for request(s)
 - Supports uploading a specified file as body for request(s)
 - Supports ignoring bad certificates on HTTPS requests (through the --insecure flag)
@@ -41,7 +42,7 @@ pip install -r requirements.txt
 - `./gimmehead3rz.py https://example.com -ch "Header1:letmein" "Header2:justkidding"` - Add multiple headers to your request.
 - `./gimmehead3rz.py https://example.com -v POST -d "TESTING!"` - Uploads the content via POST verb to the target.
 - `./gimmehead3rz.py https://example.com -v POST -df content.json` - Uploads JSON file via POST verb to the target 
-- `./gimmehead3rz.py -t targets.txt -h localhost -i -t 15` - Analyzes all targets with a custom Host header of localhost, ignores bad certs, and has a timeout time of 15 seconds for all requests.
+- `./gimmehead3rz.py -t targets.txt -h localhost -i -dc -t 15` - Analyzes all targets with a custom Host header of localhost, ignores bad certs, displays content received, and has a timeout time of 15 seconds for all requests.
 - `./gimmehead3rz.py -t targets.txt -ua "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0"` - Analyzes all targets with a custom User-Agent for all requests.
 
 ## Development

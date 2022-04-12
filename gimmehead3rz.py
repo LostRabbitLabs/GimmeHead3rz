@@ -4,6 +4,7 @@ from time import gmtime, strftime, localtime
 import argparse
 from re import sub
 from colorama import Fore, Back, Style
+requests.packages.urllib3.disable_warnings()
 
 def analyzeHeaders(args):
     reqHeaders = {}
@@ -29,12 +30,12 @@ def analyzeHeaders(args):
 
     httpsVerify = False if args.insecure else True
     redirects = True if args.redirects else False
+    displayContent = True if args.display_content else None
     dataContents = None
     if args.data:
         dataContents = args.data if args.data else None
     if args.data_file:
         dataContents = open(args.data_file) if args.data_file else None
-
     if args.url:
         print(Style.DIM + Fore.GREEN + 'Starting GimmeHead3rz against: ' + Fore.YELLOW + args.url + Style.RESET_ALL)
         try:
@@ -46,6 +47,9 @@ def analyzeHeaders(args):
             print(Style.DIM + Fore.GREEN + 'Redirection enabled, request is following: ' + Fore.YELLOW + r.url + Style.RESET_ALL)
         if not redirects and r.next:
             print(Style.DIM + Fore.GREEN + 'Request is trying to redirect to: ' + Fore.YELLOW + r.next.url + Style.RESET_ALL)
+        if not httpsVerify:
+            print(Style.DIM + Fore.GREEN + 'Insecure flag set, ignoring cert issues.')
+
         if args.hostname:
             print(Style.DIM + Fore.GREEN + 'Using custom Host header: ' + Fore.YELLOW + args.hostname + Style.RESET_ALL)
         if args.custom_headers:
@@ -102,7 +106,8 @@ def analyzeHeaders(args):
             security.close()
             common.close()
 
-        printHeaderInfo(commonHeadersFound, anomHeadersFound, securityHeadersFound, securityHeadersNames, r, args.url)
+        printHeaderInfo(commonHeadersFound, anomHeadersFound, securityHeadersFound, securityHeadersNames, r, args.url, displayContent)
+
         print(Style.DIM + Fore.GREEN + 'Finished Analyzing Headers at: ' + Fore.YELLOW + strftime("%a, %d %b %Y %H:%M:%S", localtime()) + Style.RESET_ALL)
 
     elif args.targets:
@@ -175,14 +180,14 @@ def analyzeHeaders(args):
                 security.close()
                 common.close()
 
-            printHeaderInfo(commonHeadersFound, anomHeadersFound, securityHeadersFound, securityHeadersNames, r, t)
+            printHeaderInfo(commonHeadersFound, anomHeadersFound, securityHeadersFound, securityHeadersNames, r, t, displayContent)
 
         targets.close()
         print(Style.DIM + Fore.GREEN + 'Finished Analyzing Headers at: ' + Fore.YELLOW + strftime("%a, %d %b %Y %H:%M:%S", localtime()) + Style.RESET_ALL)
     else:
         print('uh oh... Something went wrong :/')
 
-def printHeaderInfo(commonHeadersFound, anomHeadersFound, securityHeadersFound, securityHeadersNames, r, target):
+def printHeaderInfo(commonHeadersFound, anomHeadersFound, securityHeadersFound, securityHeadersNames, r, target, displayContent):
     if commonHeadersFound:
         print('\n|--- COMMON HEADERS DETECTED ---|' + Style.RESET_ALL)
         for c in range(0, len(commonHeadersFound), 1):
@@ -205,6 +210,9 @@ def printHeaderInfo(commonHeadersFound, anomHeadersFound, securityHeadersFound, 
             print(Fore.RED + '|- ' + camelCase(missingSecurityHeaders[m]) + Style.RESET_ALL)
 
     printCookies(r.cookies)
+    if displayContent:
+        printContent(r.text)
+
     print('\n' + Style.DIM + Fore.GREEN + 'Finished Analyzing Headers for: ' + Fore.YELLOW + target.rstrip())
     print('----------------------------------------------------------' + Style.RESET_ALL)
 
@@ -219,6 +227,10 @@ def getMissingHeaders(securityHeadersNames):
 def camelCase(s):
     s = sub(r"(_|-)+", "-", s).title().replace(" ", "")
     return ''.join([s[0].upper(), s[1:]])
+
+def printContent(content):
+    print('\n|--- Web Page Content ---|')
+    print(Style.DIM + Fore.CYAN + content + Style.RESET_ALL)
 
 def printCookies(cookies):
     print('\n|--- Analyzing C00kies ---|' + Style.RESET_ALL)
@@ -254,7 +266,7 @@ def printCookies(cookies):
                 print(Fore.CYAN + '|---- No Domains Associated?' + Style.RESET_ALL)
             print('')
     else:
-        print(Fore.CYAN + 'No Cookies Found ;\'(\n' + Style.RESET_ALL)
+        print(Style.BRIGHT + Fore.BLACK + 'No Cookies Found ;\'(' + Style.RESET_ALL)
 
 def printArt():
     img = """
@@ -309,9 +321,10 @@ targetsGroup.add_argument('-t', '--targets', nargs='?', action='store', help='Li
 parser.add_argument('-c','--cookie', nargs='+', action='store', help='Customizable cookie for the analysis. Example: -c "BestCookie:Nelson-Cook" "Cookie2:Value2"', metavar='"COOKIE_NAME:COOKIE_VAL"')
 parser.add_argument('-ch', '--custom-headers', nargs='+', action='store', help='Customizable HTTP/HTTPS headers to use in the request(s). Example: -ch "Header1:Yes" "Header2:No"', metavar='"H1:V1" "H2:V2"')
 parser.add_argument('-d', '--data', nargs='?', action='store', help='Send data in your PUT/POST request(s). Example: -d \'{ "Key": "Val" }\'', metavar='BODY_STR')
+parser.add_argument('-dc', '--display-content', nargs='?', const=True, action='store', help='FLAG ONLY. Display content from request(s). Example: URL -dc', metavar='FLAG_ONLY')
 parser.add_argument('-df', '--data-file', nargs='?', action='store', help='Specify file of data to send in your request. Example: -df content.json', metavar='FILE_NAME')
 parser.add_argument('-host', '--hostname', action='store', help='Customizable host header for the analysis. Example: -host 127.0.0.1', metavar='HOSTHEADER_VAL')
-parser.add_argument('-i','--insecure', nargs='?', action='store', help='FLAG ONLY. Ignore certificate errors for the HTTPS related request(s). Default is True. Example: URL -i', metavar='FLAG_ONLY')
+parser.add_argument('-i','--insecure', nargs='?', const=True, action='store', help='FLAG ONLY. Ignore certificate errors for the HTTPS related request(s). Default is True. Example: URL -i', metavar='FLAG_ONLY')
 parser.add_argument('-r', '--redirects', nargs='?', const=True, help='FLAG ONLY. Use this option to follow redirects for all target(s). Default is False. Example: URL -r', metavar='FLAG_ONLY')
 parser.add_argument('-to', '--timeout',  action='store', type=int, default=12, help='Sets the timeout length in seconds. Default is 12 seconds. Example: -to 30', metavar='INT')
 parser.add_argument('-ua','--user-agent', action='store', help='Customizable user-agent to use in the request(s). Example: -ua "Curl/7.77.0"', metavar='"USER_AGENT_STR"')
