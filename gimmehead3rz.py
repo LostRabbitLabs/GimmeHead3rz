@@ -312,10 +312,10 @@ def printArt():
     print('')
 
 formatter = lambda prog: argparse.HelpFormatter(prog, indent_increment=7, max_help_position=25, width=130)
-parser = argparse.ArgumentParser(prog='gimmehead3rz.py', description='Analyze HTTP Headers by using a single URL or a targets file.', formatter_class=formatter)
+parser = argparse.ArgumentParser(prog='gimmehead3rz.py', description='Analyze HTTP Headers by using a single URL or a targets file followed by additional arguments. Example command usage below.  ./gimmiehead3rz.py https://example.com -dc -r -to 30', formatter_class=formatter)
 
 targetsGroup = parser.add_mutually_exclusive_group()
-targetsGroup.add_argument('url', nargs='?', action='store', help='URL of a single HTTP or HTTPS service to analyze.')
+targetsGroup.add_argument('url', nargs='?', action='store', help='URL of a single HTTP or HTTPS service to analyze.', metavar='URL')
 targetsGroup.add_argument('-t', '--targets', nargs='?', action='store', help='Line seperated file of URLs to analyze.', metavar='targets.txt')
 
 parser.add_argument('-c','--cookie', nargs='+', action='store', help='Customizable cookie for the analysis. Example: -c "BestCookie:Nelson-Cook" "Cookie2:Value2"', metavar='"COOKIE_NAME:COOKIE_VAL"')
