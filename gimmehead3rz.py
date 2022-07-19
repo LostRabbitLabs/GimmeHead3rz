@@ -269,41 +269,6 @@ def printCookies(cookies):
         print(Style.BRIGHT + Fore.BLACK + 'No Cookies Found ;\'(' + Style.RESET_ALL)
 
 def printArt():
-    img = """
-
-  ....                          ....
- .:cc::;'..                  ..',,..
-  .,:ccllc:;,.           .';:cllc;.
-    'cllcc:c::,.       .,cllcc:,.
-     .,clc:::::,.     .,::::;..
-        ..',:::;,'''',,::::,.
-           .:ccccccccccccc::,'..
-        .':cccccccllcccc::::::::,.
-      .,clcccccllc:::ccllc::::::c:'
-     .:ollccccc:'. .. .'coc:;::::::,.
-    .;llllcccclc.       ,oo:;;::::::'
-    'lllllcc::cl;.      .cl:::::::::;.
-   .:olllccc:::::;,',,;;;::::;::ccc:;.
-   .coolccccccc::;;;,,,;;;:clllc::c:;.
-   .:olllcccccccccc:c::::::ldddol;,;c'
-    ,:::::::;::::cclllllllcclllll:;::.
-   .::;;;;,,;:::cloooooooodddollllc;.
-   'c:;;,,;:cllolooooodddddddddoolc.
-   ,::;,,,:llllllooooooooooooollc:'
-  ':;,''',::clllloolooolllllcc::,.
- .''.......',;;;:cclccccc:::;,'.      ...
- ....         ....'',,,,'''..    .......
-                 ..       ...........
-                 .,'....',,,....
-               .,,,''''''...
-           .',:::,.....
-         .',;;;,.
-      .',;;,..
-    ..';;'..
-   .......
- ......
-..... """
-    print(Style.DIM + Fore.WHITE + img + Style.RESET_ALL)
     print(Style.BRIGHT + Fore.BLUE + "::::::::::::::::::::::::::::::::::::::::::::::" + Style.RESET_ALL)
     print(Style.BRIGHT + Fore.BLUE + "        :::    Lost Rabbit Labs    :::        " + Style.RESET_ALL)
     print(Style.BRIGHT + Fore.BLUE + "        ::: ---- GimmeHead3rz ---- :::        " + Style.RESET_ALL)
