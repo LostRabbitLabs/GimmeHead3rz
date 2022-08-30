@@ -4,5 +4,4 @@ X-Content-Type-Options
 Strict-Transport-Security
 Content-Security-Policy
 Referrer-Policy
-Expect-CT
 Permissions-Policy
