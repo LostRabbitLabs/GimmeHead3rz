@@ -40,24 +40,31 @@ pip install -r requirements.txt
 ## Sample Commands
 
 <strong>Sets follow redirection to TRUE for the request</strong>:
+
 `./gimmehead3rz.py https://example.com -r`
 
 <strong>Sets the cookie to use for the request:</strong> 
+
 `./gimmehead3rz.py https://example.com/dashboard -c "mainCookie:Nelson-Cook" "otherCookie=CoconutHead"`
 
 <strong>Add multiple headers to your request:</strong>
+
 `./gimmehead3rz.py https://example.com -ch "Header1:letmein" "Header2:justkidding"`
 
 <strong>Uploads the content via POST verb to the target:</strong>
+
 `./gimmehead3rz.py https://example.com -v POST -d "TESTING!"`
 
 <strong>Uploads JSON file via POST verb to the target:</strong>
+
 `./gimmehead3rz.py https://example.com -v POST -df content.json`
 
 <strong>Analyzes all targets with a custom Host header of localhost, ignores bad certs, displays content received, and has a timeout time of 15 seconds for all requests:</strong>
+
 `./gimmehead3rz.py -t targets.txt -h localhost -i -dc -t 15`
 
 <strong>Analyzes all targets with a custom User-Agent for all requests</strong>
+
 `./gimmehead3rz.py -t targets.txt -ua "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0"`
 
 ## License
