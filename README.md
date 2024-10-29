@@ -12,7 +12,10 @@
 
 ## Contributors
 
-Original concept and code by <a href="https://gitlab.com/Murmaid3r"><strong>@Murmaid3r</strong></a>
+Original concept and code by <a href="https://gitlab.com/Murmaid3r">
+
+<strong>@Murmaid3r</strong></a>
+
 <a href="https://gitlab.com/Murmaid3r"><img style="border-radius: 50%" src="https://gitlab.com/uploads/-/system/user/avatar/4966171/avatar.png?width=192" width="100"></a>
 
 ## Features
