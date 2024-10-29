@@ -1,5 +1,5 @@
 <table>
-    <tr style="text-align: left">
+    <tr style="text-align: left; border: 0px">
         <th style="height: auto; width: 160px; padding-top: 55px">
             <img src="https://www.lostrabbitlabs.com/files/pics/logos/LRL-MainLogo-WBG.jpg" width="210">
         </th>
