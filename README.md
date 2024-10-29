@@ -1,22 +1,9 @@
-<style>
-table {
-    border-collapse: collapse;
-}
-table, th, td {
-   border: none;
-}
-blockquote {
-    border-left: none;
-    padding-left: 10px;
-}
-</style>
-
 <table style="border: none">
-    <tr style="text-align: left">
-        <th style="height: auto; width: 160px; padding-top: 55px">
+    <tr style="text-align: left; border: none">
+        <th style="height: auto; width: 160px; padding-top: 55px; border: none">
             <img src="https://www.lostrabbitlabs.com/files/pics/logos/LRL-MainLogo-WBG.jpg" width="210">
         </th>
-        <th>
+        <th style="border: none">
             <h1> --- GimmeHead3rz v1.0 --- </h1>
             <p><strong>GimmeHead3rz</strong> is an up-to-date customizable HTTP/HTTPS header analyzer that evaluates security flags on cookies and looks for missing security headers and then categorizes found headers into the Common Headers, Anomalous Headers, Security Headers categories.</p>
         </th>
