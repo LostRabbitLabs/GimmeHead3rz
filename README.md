@@ -1,31 +1,30 @@
-[![N|Solid](https://www.lostrabbitlabs.com/files/pics/LRLlogo-TM.png)](https://www.lostrabbitlabs.com)
+<table>
+    <tr style="text-align: left">
+        <th style="height: auto; width: 160px; padding-top: 55px">
+            <img src="https://www.lostrabbitlabs.com/files/pics/logos/LRL-MainLogo-WBG.jpg" width="210">
+        </th>
+        <th>
+            <h1> --- GimmeHead3rz v1.0 --- </h1>
+            <p><strong>GimmeHead3rz</strong> is an up-to-date customizable HTTP/HTTPS header analyzer that evaluates security flags on cookies and looks for missing security headers and then categorizes found headers into the Common Headers, Anomalous Headers, Security Headers categories.</p>
+        </th>
+    </tr>
+</table>
 
-# --- GimmeHead3rz ---
-GimmeHead3rz is an up-to-date customizable HTTP/HTTPS header analyzer that evaluates security flags on cookies and looks for missing security headers and then categorizes found headers into the following categories:
-- Common Headers
-- Anomalous Headers
-- Security Headers
+## Contributors
+
+Original concept and code by <a href="https://gitlab.com/Murmaid3r"><strong>@Murmaid3r</strong></a>
+<a href="https://gitlab.com/Murmaid3r"><img style="border-radius: 50%" src="https://gitlab.com/uploads/-/system/user/avatar/4966171/avatar.png?width=192" width="100"></a>
 
 ## Features
 
-- Customizable common-headers.txt and security-headers.txt files for your use-cases
-- Single target and multi-target analysis
-- Analyzes cookies and associated flags
-- Supports different HTTP verbs (GET/OPTIONS/HEAD/POST/PUT/PATCH/DELETE/ETC...)
-- Supports customizable cookies to the request(s) for authenticated analysis
-- Supports customizable headers (both name and value) to the request(s)
-- Supports a customizable Host header
-- Supports a customizable User-Agent header
-- Supports displaying content received from the request(s)
-- Supports customizable body content for request(s)
-- Supports uploading a specified file as body for request(s)
-- Supports ignoring bad certificates on HTTPS requests (through the --insecure flag)
-- Supports following redirects on all requests (through the --redirects flag)
-- Supports a specified timeout period for request(s)
+- Analyze cookies, associated flags, and response content for single and multi-targets.
+- Supports customizable cookies, headers, Hosts, User-Agents, common-headers.txt, security-headers.txt, and request body content.
+- Supports scan customization through usage of flags like --insecure, --redirects, --verb, and others.
+- Supports uploading a specified file as the body for request(s)
 
 ## Installation
 
-GimmeHead3rz requires [Python3](https://www.python.org/downloads/) to run.
+<strong>GimmeHead3rz</strong> requires [Python3](https://www.python.org/downloads/) to run.
 
 Clone the repository and pip install dependencies.
 
@@ -37,21 +36,27 @@ pip install -r requirements.txt
 
 ## Sample Commands
 
-- `./gimmehead3rz.py https://example.com -r` - Sets follow redirection to TRUE for the request.
-- `./gimmehead3rz.py https://example.com/dashboard -c "mainCookie:Nelson-Cook" "otherCookie=CoconutHead"` - Sets the cookie to use for the request.
-- `./gimmehead3rz.py https://example.com -ch "Header1:letmein" "Header2:justkidding"` - Add multiple headers to your request.
-- `./gimmehead3rz.py https://example.com -v POST -d "TESTING!"` - Uploads the content via POST verb to the target.
-- `./gimmehead3rz.py https://example.com -v POST -df content.json` - Uploads JSON file via POST verb to the target 
-- `./gimmehead3rz.py -t targets.txt -h localhost -i -dc -t 15` - Analyzes all targets with a custom Host header of localhost, ignores bad certs, displays content received, and has a timeout time of 15 seconds for all requests.
-- `./gimmehead3rz.py -t targets.txt -ua "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0"` - Analyzes all targets with a custom User-Agent for all requests.
+<strong>Sets follow redirection to TRUE for the request</strong>:
+`./gimmehead3rz.py https://example.com -r`
 
-## Development
+<strong>Sets the cookie to use for the request:</strong> 
+`./gimmehead3rz.py https://example.com/dashboard -c "mainCookie:Nelson-Cook" "otherCookie=CoconutHead"`
 
-Any bugs to report or ideas to make it better?
+<strong>Add multiple headers to your request:</strong>
+`./gimmehead3rz.py https://example.com -ch "Header1:letmein" "Header2:justkidding"`
 
-Let us know in the comments or at a con.
+<strong>Uploads the content via POST verb to the target:</strong>
+`./gimmehead3rz.py https://example.com -v POST -d "TESTING!"`
+
+<strong>Uploads JSON file via POST verb to the target:</strong>
+`./gimmehead3rz.py https://example.com -v POST -df content.json`
+
+<strong>Analyzes all targets with a custom Host header of localhost, ignores bad certs, displays content received, and has a timeout time of 15 seconds for all requests:</strong>
+`./gimmehead3rz.py -t targets.txt -h localhost -i -dc -t 15`
+
+<strong>Analyzes all targets with a custom User-Agent for all requests</strong>
+`./gimmehead3rz.py -t targets.txt -ua "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0"`
 
 ## License
 
 MIT License
-
