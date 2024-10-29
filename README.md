@@ -1,3 +1,9 @@
+<style>
+td, th {
+   border: none!important;
+}
+</style>
+
 <table style="border: none">
     <tr style="text-align: left">
         <th style="height: auto; width: 160px; padding-top: 55px">
